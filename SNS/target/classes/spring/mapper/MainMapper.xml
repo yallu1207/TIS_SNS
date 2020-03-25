@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="tis.sns.meeting.mapper.MainMapper">
+   	
+   	<!-- 메인 게시글 맵핑 -->
+   	<select id="listBoardAllPaging" resultType="tis.sns.board.domain.BoardVO" parameterType="tis.sns.meeting.domain.PagingVO">
+		<!-- select * from boardView order by boardnum desc -->
+		select * from(
+			select row_number() over(order by boardnum desc) rn, boardView.*		
+		 	from boardView order by boardnum desc
+		) where rn between #{start} and #{end};
+	</select>
+
+	<select id="listBoardAll" resultType="tis.sns.board.domain.BoardVO">
+		select * from boardView order by boardnum asc
+	</select>
+
+	<insert id="insertBoard" parameterType="tis.sns.board.domain.BoardVO">
+		INSERT INTO board1 (boardnum, content, author, wdate)
+		 VALUES(BOARD1_SEQ.NEXTVAL, #{content:VARCHAR}, #{author:VARCHAR}, SYSDATE) 
+	</insert>
+	
+	<!-- 사진이 null일 때 조각 코드 -->
+	<sql id="imageNull">
+		boardnum, nvl(addr, 'noimage.png') addr, title, content, author, wdate 
+	</sql>
+	
+	<select id="getTotalCount" parameterType="tis.sns.meeting.domain.PagingVO" resultType="int">
+		select count(idx) from board1
+	</select>
+	
+</mapper>
+

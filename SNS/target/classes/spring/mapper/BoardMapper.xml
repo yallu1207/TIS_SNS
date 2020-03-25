@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="tis.sns.board.mapper.BoardMapper">
+	
+	<insert id="insertBoard" parameterType="tis.sns.board.domain.BoardVO" >
+		INSERT INTO BOARD1 VALUES
+		( BOARD1_SEQ.NEXTVAL, #{addr:VARCHAR}, #{title:VARCHAR}, 
+			#{content:VARCHAR}, #{author:VARCHAR}, SYSTIMESTAMP) 
+	</insert>
+	
+	<select id="listBoard" resultType="tis.sns.board.domain.BoardVO">
+		select * from board1 where title=#{title} order by boardnum 
+	</select>
+	
+	<select id="list_all_Board" resultType="tis.sns.board.domain.BoardVO">
+		select * from board1  where addr is not null order by boardnum 
+	</select>
+	
+	<select id="totalBoard" parameterType="String" resultType="int">
+		select count(*) from board1 where author=#{author} 
+	</select>
+	
+	<select id="total_all_Board" resultType="int">
+		select count(*) from board1
+	</select>
+	
+	<select id="getAllReply" parameterType="String" resultType="tis.sns.board.domain.replyVO">
+		select * from reply where board_num =#{boardnum} order by reply_num 
+	</select>
+	
+	<select id="selectOne" parameterType="String" resultType="tis.sns.board.domain.BoardVO">
+		select * from board1 where boardnum=#{boardnum} 
+	</select>
+	
+	<update id="updateBoard" parameterType="tis.sns.board.domain.BoardVO">							
+   		update board1 set content=#{content}, wdate=sysdate 
+   		<if test="addr !=null">
+   		, addr=#{addr}
+   		</if>
+   		where boardnum=#{boardnum}						
+   	</update>
+	
+	<delete id="deleteBoard" parameterType="string">
+		delete from board1 where boardnum=#{boardnum}
+	</delete>
+	
+	<insert id="insertReply" parameterType="tis.sns.board.domain.BoardVO">							
+   		insert into reply values (reply_seq.nextval, #{board_num}, #{content}, #{author}, sysdate)		
+   	</insert>
+   	
+   	<delete id="deleteReply" parameterType="string">							
+   		delete from reply where reply_num=#{reply_num}
+   	</delete>
+   	
+   	
+	
+
+  
+</mapper>

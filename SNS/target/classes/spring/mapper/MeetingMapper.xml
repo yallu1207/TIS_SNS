@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="tis.sns.meeting.mapper.MeetingMapper">
+	
+	<!-- 소모임 정보 등록 -->
+	<insert id="insertMeeting" parameterType="tis.sns.meeting.domain.MeetingVO">
+		<selectKey keyProperty="midx" order="BEFORE" resultType="int">
+			select MEETING_MIDX_PK_SEQ.NEXTVAL from dual
+		</selectKey>
+		insert into meeting(idx,midx,category,meetname,meetcontent,mdate,personnel,leader,hp1,hp2,hp3,place,meetpwd,image,mtime,rstatus,rpersonnel,originimage)
+		values ((select idx from member where nick_name=#{leader}),#{midx},#{category},#{meetName},#{meetContent:VARCHAR},#{mdateStr:VARCHAR},#{personnel:NUMERIC},
+					#{leader},#{hp1},#{hp2},#{hp3},#{place:VARCHAR},#{meetPwd},#{image:VARCHAR},#{mtime:VARCHAR},1,#{rpersonnel:NUMERIC},#{originImage:VARCHAR})
+	</insert>
+	
+	<!-- 소모임 모든 게시글 불러오기 -->
+	<!-- <select id="selectAllList" resultType="Meeting">
+		select * from meeting order by midx desc
+	</select> -->
+	
+	<!-- 소모임 모든 게시글 불러오기 -->
+	<select id="selectAllList" parameterType="tis.sns.meeting.domain.PagingVO" resultType="tis.sns.meeting.domain.MeetingVO">
+		select * from(
+			select row_number() over(order by midx desc) rn, meeting.*		
+		 	from meeting
+		<include refid="search" />
+		) where rn between #{start} and #{end}
+	</select>
+	
+	<sql id="search">
+		<if test="searchType != null and searchType != ' ' ">
+			<where>
+				<choose>
+					<when test="searchType==1">
+						midx like '%'||#{keyword}||'%'
+					</when>
+					<when test="searchType==2">
+						category like '%'||#{keyword}||'%'
+					</when>
+					<when test="searchType==3">
+						meetname like '%'||#{keyword}||'%'
+					</when>
+					<when test="searchType==4">
+						place like '%'||#{keyword}||'%'
+					</when>
+					<when test="searchType==5">
+						rstatus like '%'||#{keyword}||'%'
+					</when>
+					<otherwise>
+						meetname like '%'||#{keyword}||'%'
+					</otherwise>
+				</choose>
+			</where>
+		</if>
+	</sql>
+	
+	<!-- 소모임 1개의 게시글만 불러오기 -->
+	<select id="selectOneList" parameterType="int" resultType="tis.sns.meeting.domain.MeetingVO">
+		select
+		<include refid="imageNull" />
+		from meeting where midx=#{midx}
+	</select>
+	
+	<!-- 게시글 수 불러오기 -->
+	<select id="getTotalCount" parameterType="tis.sns.meeting.domain.PagingVO" resultType="int">
+		select count(midx) from meeting
+		<include refid="search" />
+	</select>
+	
+	<update id="updateMeeting" parameterType="tis.sns.meeting.domain.MeetingVO">
+		update meeting 
+		set category=#{category}, meetName=#{meetName}, meetContent=#{meetContent:VARCHAR},
+				mdate=#{mdateStr:VARCHAR}, mtime=#{mtime:VARCHAR}, personnel=#{personnel:NUMERIC}, 
+				hp1=#{hp1}, hp2=#{hp2}, hp3=#{hp3}, place=#{place:VARCHAR}, meetpwd=#{meetPwd}
+			<if test="image != null and image != '' ">
+				, image=#{image:VARCHAR}, originImage=#{originImage:VARCHAR}
+			</if>
+		where midx=#{midx}
+	</update>
+	
+	<!-- 사진이 null일 때 조각 코드 -->
+	<sql id="imageNull">
+		idx, midx, category, meetname, meetcontent, mdate, personnel, leader, 
+		hp1, hp2, hp3, place, meetpwd, nvl(image, 'noimage.png') image, 
+		mtime, rstatus, rpersonnel 
+	</sql>
+
+	<!-- 소모임 신청자 수 증가 -->
+	<update id="updateApply" parameterType="int">
+		update meeting set rpersonnel=rpersonnel+1 where midx=#{midx}
+	</update>
+	
+	<!-- 소모임 모집상태 변경 -->
+	<update id="updateRstate" parameterType="int">
+		update meeting set rstatus=2 where midx=#{midx} and personnel=rpersonnel
+	</update>
+		
+	<!-- 소모임 모집상태 변경 -->
+   <update id="meetingClose" parameterType="int">
+      update meeting set rstatus=2 where midx=#{midx}
+   </update>
+	
+		
+</mapper>

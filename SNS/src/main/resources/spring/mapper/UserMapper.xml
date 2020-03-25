@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="tis.sns.user.mapper.UserMapper">
+	
+	<select id="findUserByUserid" parameterType="string" resultType="tis.sns.user.domain.UserVO">
+		select * from member where userid=#{userid}
+	</select>
+	
+	<select id="idCheck" parameterType="string" resultType="int">
+		select count(idx) from member where userid=#{userid}
+	</select>
+	
+	<select id="find_userid" parameterType="tis.sns.user.domain.UserVO" resultType="String">
+		select userid from member where name=#{name} and birth=#{birth}
+	</select>
+	
+	<select id="nickCheck" parameterType="string" resultType="int">
+		select count(idx) from member where nick_name=#{nick_name}
+	</select>
+	
+	<insert id="createUser" parameterType="tis.sns.user.domain.UserVO">
+		<selectKey keyProperty="idx" order="BEFORE" resultType="int">
+			select member_seq.nextval from dual
+		</selectKey>
+		INSERT INTO MEMBER values
+		(#{idx},#{name},#{nick_name},#{userid},#{pwd},#{email:VARCHAR},#{birth:VARCHAR},
+		#{hp1},#{hp2},#{hp3},#{post},#{addr1},#{addr2:VARCHAR},SYSDATE,1000,0
+		<choose>
+			<when test="profile != null">
+				,#{profile})
+			</when>
+			<otherwise>
+				,noimage.PNG)
+			</otherwise>
+		</choose>
+		
+	</insert>
+	
+	<insert id="updateUser" parameterType="tis.sns.user.domain.UserVO">
+		update member set name=#{name}
+		<if test="pwd != null and pwd != ''">
+		,pwd=#{pwd}
+		</if>
+		
+		<if test="profile != null and profile !=''">
+		,profile=#{profile}
+		</if>
+		<if test="hp1 != null and hp1 !=''">
+		,hp1=#{hp1}
+		</if>
+		<if test="hp2 != null and hp2 !=''">
+		,hp2=#{hp2}
+		</if>
+		<if test="hp3 != null and hp3 !=''">
+		,hp3=#{hp3}
+		</if>
+		<if test="post != null and post !=''">
+		,post=#{post}
+		</if>
+		<if test="addr1 != null and addr1 !=''">
+		,addr1=#{addr1}
+		</if>
+		<if test="addr2 != null and addr2 !=''">
+		,addr2=#{addr2}
+		</if>
+		where idx=#{idx}
+	</insert>
+	
+
+
+  
+</mapper>
