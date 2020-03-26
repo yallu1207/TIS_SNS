@@ -7,16 +7,16 @@
 추가적으로 입력받은 데이터를 정규식으로 검사하는 방법과 IE환경과 Chrome환경에서의 한글파일 인코딩 처리방식에 대해 학습했습니다.
 
 1 ) 개발환경 <br>
-Language : JAVA8
-OS : Window 7
-DBMS : Oracle 11g Express Edition
-Server : Apache Tomcat 8.5
-Framework : Spring Framework, MyBatis
+Language : JAVA8 <br>
+OS : Window 7 <br>
+DBMS : Oracle 11g Express Edition <br>
+Server : Apache Tomcat 8.5 <br>
+Framework : Spring Framework, MyBatis <br>
 
-2 ) 개발툴
+2 ) 개발툴 <br>
 Eclipse JEE 2019-9(STS Plugin), SQLDeveloper, eXerd, StarUML
 
-3 ) 제작기간
+3 ) 제작기간 <br>
 2020.02.01~2020.03.19
 
 <h4>2. 프로젝트 소개</h4>
