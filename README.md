@@ -30,10 +30,10 @@ Eclipse JEE 2019-9(STS Plugin), SQLDeveloper, eXerd, StarUML
 
 <h4> 4. 프로젝트 시연 </h4>
 
-  1) 로그인 페이지입니다.
+  <h5> 1) 로그인 페이지입니다. </h5>
 ![111111](https://user-images.githubusercontent.com/58323308/77614606-b9a77080-6f70-11ea-8bed-9683671b3da1.PNG)
 
-  2) 회원가입 페이지입니다.
+  <h5> 2) 회원가입 페이지입니다. </h5>
 ![222222](https://user-images.githubusercontent.com/58323308/77614614-be6c2480-6f70-11ea-95f2-a4260c308813.PNG)
 
   3) 메인 페이지입니다.
