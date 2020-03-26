@@ -24,3 +24,12 @@ Eclipse JEE 2019-9(STS Plugin), SQLDeveloper, eXerd, StarUML
 인스타그램, 페이스북과 같은 SNS앱을 벤치마킹했습니다.
 소모임기능과 엔터테인먼트와 같은 추가적인 기능들은 회원 마일리지를 통해 사용함으로써 기존의 SNS앱과 차별화를 두었습니다.
 
+<h4> 3. 데이터베이스 설계 </h4>
+
+![SNS_exerd](https://user-images.githubusercontent.com/58323308/77614542-9250a380-6f70-11ea-9593-1e4070af7194.JPG)
+
+<h4> 4. 프로젝트 시연 </h4>
+
+
+
+
