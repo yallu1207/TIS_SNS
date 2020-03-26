@@ -63,7 +63,7 @@ Eclipse JEE 2019-9(STS Plugin), SQLDeveloper, eXerd, StarUML
 <br>
 <hr>
 <br>
-프로젝트에 관련된 자세한 설명은 포트폴리오.PDF 파일에 첨부했습니다.<br>
+프로젝트에 관련된 자세한 설명은 Portfolio.PDF 파일에 첨부했습니다.<br>
 감사합니다.
 
 
