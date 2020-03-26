@@ -30,23 +30,33 @@ Eclipse JEE 2019-9(STS Plugin), SQLDeveloper, eXerd, StarUML
 
 <h4> 4. 프로젝트 시연 </h4>
 
-
+  1) 로그인 페이지입니다.
 ![111111](https://user-images.githubusercontent.com/58323308/77614606-b9a77080-6f70-11ea-8bed-9683671b3da1.PNG)
 
+  2) 회원가입 페이지입니다.
 ![222222](https://user-images.githubusercontent.com/58323308/77614614-be6c2480-6f70-11ea-95f2-a4260c308813.PNG)
 
+  3) 메인 페이지입니다.
 ![3333333](https://user-images.githubusercontent.com/58323308/77614621-c035e800-6f70-11ea-85cb-004dd1b7eeda.PNG)
 
+  4) 게시물 업로드 페이지입니다.
 ![44444444](https://user-images.githubusercontent.com/58323308/77614624-c2984200-6f70-11ea-930c-ecf53ac37452.PNG)
 
+  5) 개인 게시물 리스트 페이지입니다.
 ![5555555555](https://user-images.githubusercontent.com/58323308/77614634-c62bc900-6f70-11ea-8c7f-852ba665f817.PNG)
 
+  6) 게시물 상세보기 페이지입니다.
 ![66666666666](https://user-images.githubusercontent.com/58323308/77614649-cc21aa00-6f70-11ea-8996-99ebfec65148.PNG)
 
+  7) 소모임 생성 페이지입니다.
 ![7777777777777777](https://user-images.githubusercontent.com/58323308/77614657-cf1c9a80-6f70-11ea-9bca-c21dec002e20.PNG)
 
+  8) 소모임 리스트 페이지입니다.
 ![77777777](https://user-images.githubusercontent.com/58323308/77614664-d17ef480-6f70-11ea-90db-98d6d13f8a69.PNG)
 
+<hr>
+프로젝트에 관련된 자세한 설명은 포트폴리오.PDF 파일에 첨부했습니다.<br>
+감사합니다.
 
 
 
